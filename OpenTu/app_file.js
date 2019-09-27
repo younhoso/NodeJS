@@ -17,10 +17,10 @@ nunjucks.configure('views_file', {
 
 app.use(bodyParser.urlencoded({extended: false}));  //bodyParser미들웨어를 (use는 bodyParser모듈을 사용하겠다.) 먼저 통화한 다음에 라우트가 동작하게 됩니다.
 
-app.get('/topic/new', (req, res) => {
+app.get('/topic/new', (req, res) => {       // topic/new 라우터 작성
     res.render('new.html');
 });
-app.get('/topic', (req, res) => {
+app.get('/topic', (req, res) => {           // topic 라우터 작성
     fs.readdir('data', (err, files) => {    //화면에 출력할때는 readdir메서드 사용, 콜백함수에 인자로 err, files가 오는데 files는 배열로 담겨져있다. 1)
         if(err){
             res.status(500).send('Internal Server Error');  //status(500)은 현재 네트워크 상태를 보여주는 에러
@@ -28,7 +28,7 @@ app.get('/topic', (req, res) => {
         res.render('view.html', {topics: files});   //view.html 파일에 files 배열의 값들을 topics라는 변수에 넣는다.(즉 view.html에서 topics라는 변수를 사용가능하다.) 2)
     });
 });
-app.post('/topic', (req, res) => {
+app.post('/topic', (req, res) => {          // topic 라우터 작성 (post방식)
     var title = req.body.title;
     var description = req.body.description;
     fs.writeFile('data/'+title, description, (err) => {     //작성한 데이터를 저장하고 싶을때는 writeFile메서드 사용
