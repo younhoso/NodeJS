@@ -7,7 +7,7 @@ const app = express();
 app.set('html', nunjucks.render);
 app.set('view engine', 'html');
 
-//nunjucks 템플레이트 views(폴더 경로 시작점)
+//nunjucks 템플레이트 views(폴더 경로 시작점 지정)
 nunjucks.configure('views', {
     autoescape: true,
     express: app
